@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <title>exercice 4 partie 4 angularJS</title>
+  </head>
+  <body>
+    <table  ng-app="car" ng-controller="myCtrl">
+      <thead>
+        <tr>
+          <th>Marque</th>
+          <th>Couleur</th>
+        </tr>
+      </thead>
+      <tr ng-repeat = "car in carArray | filter : '!verte'">
+      <td>{{car.marque}}</td>
+      <td>{{car.couleur}}</td>
+      </tr>
+    </table>
+    <script>
+      var app= angular.module('car',[]);
+      app.controller('myCtrl',function($scope,$http){
+        $http.get('voiture.json').then(function(answer){
+          $scope.carArray = answer.data;
+        });
+      });
+    </script>
+  </body>
+</html>
